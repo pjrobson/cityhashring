@@ -14,3 +14,8 @@ e.g.
 
      g++ -o hash_ring_test -g -Wall hash/hash.cpp hash_ring/hash_ring.cpp hash_ring_test.cpp -lcityhash
 
+License
+=======
+
+See License.md
+
