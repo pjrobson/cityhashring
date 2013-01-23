@@ -1,4 +1,5 @@
-cityhashring
-============
+City Hash Ring
+==============
 
-A hash ring that uses city hash
+A hash ring that uses cityhash, currently only CityHash64 is supported.
+
