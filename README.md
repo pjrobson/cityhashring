@@ -14,7 +14,7 @@ e.g.
 
      g++ -o hash_ring_test -g -Wall hash/hash.cpp hash_ring/hash_ring.cpp hash_ring_test.cpp -lcityhash
 
-The hash ring creates 100 points around the ring for each node that you create in the ring. Therefore if you add 3 nodes, you have 300 points around the ring. This aids the distribution of hashes around the ring. Test case 8 demonstrates this with adding 10K hashes to a ring with 3 nodes. The distrubution is as follows:
+The hash ring creates 100 points around the ring for each node that you create in the ring. Therefore if you add 3 nodes, you have 300 points around the ring. This aids the distribution of hashes. Test case 8 demonstrates this with adding 10K hashes to a ring with 3 nodes. The distrubution is as follows:
 
      10.239.0.1:2223 : 3162
      10.239.0.2:2223 : 3247
