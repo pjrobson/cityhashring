@@ -1,19 +1,16 @@
 
 #include "city.h"
 #include <map>
-//#include <pair>
 /*
  * hash_ring
  *
- * Perform consistent hashing, across servers and id's
+ * Hash ring to determine what node/server an identifier should be stored at
  *
  */
 
 class CHash_Ring
 {
     private:
-        //std::vector<std::pair<const char*, uint64>> nodes;
-        //std::map<const char*, uint64> mapping;
         std::map<uint64, const char*> mapping;
         int htype;
         CHash myhash;

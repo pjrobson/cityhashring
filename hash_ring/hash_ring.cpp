@@ -4,7 +4,6 @@
 #include "city.h"
 #include <iostream>
 #include <string.h>
-//#include <stdlib.h>
 #include <stdio.h>
 #include <map>
 
@@ -31,7 +30,7 @@ int CHash_Ring::create(enum hash_t Hash_Type)
     }
     else
     {
-        std::cout << "ERROR: invalid hash type" << std::endl;
+        //std::cout << "ERROR: invalid hash type" << std::endl;
         return 1;
     };
 };
@@ -72,7 +71,7 @@ int CHash_Ring::addNode(char * str, int str_len)
         strcat(node,str);
         strcat(node,num);
 
-        hash_value = calcHash(node);  //calcHash(str);
+        hash_value = calcHash(node); 
 
         if (hash_value != 0)
             mapping[hash_value] = str;
@@ -154,23 +153,25 @@ void CHash_Ring::listNodeDetails()
 char * CHash_Ring::determineServer(char * str)
 {
 
-    //TODO 
-    //     - Add in details so that we loop around back to the start of map if our value is greater than
-    //       then largest node value - use it.end()?
-    //
-
     uint64 hash_value;
+    char *node;
 
     hash_value = calcHash(str);
 
     std::map<uint64, const char*>::iterator it = mapping.lower_bound(hash_value); // set lower bounds for iterator 
-    if(it != mapping.begin())
-        ++it; // it now points at the correct element
 
-    //std::cout << "hash: " << hash_value << std::endl;
-    //std::cout << "first: " << it->first << " second: " << it->second << std::endl;
+    // if we're at the end of the iterator, then set a new iterator back to the start and use that node
+    // i.e. we loop around the ring as the hash value is greater that the hash of the last point on
+    // the ring
+    if(it == mapping.end()) {
+        std::map<uint64, const char*>::iterator it2 = mapping.begin(); // set to initial mapping entry 
+        node = (char*)it2->second;
+    }
+    else
+    {
+        node = (char*)it->second; 
+    };
 
-    return (char*)it->second;
-
+    return node;
 }
 
